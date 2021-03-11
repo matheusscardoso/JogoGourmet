@@ -13,6 +13,7 @@ import main.utils.Utils;
 import javax.swing.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Startup {
 
@@ -53,17 +54,25 @@ public class Startup {
                 }
                 lastSearch = c.getName();
             }
-
-
-            if (selectedCategory == null) {
+            if (selectedCategory == null && setFod.size() == setCat.size() ) {
                 Giveup(lastSearch, db, flagExit);
-            } else {
-
+            }
+            else {
                 Set<Food> filterFood = new LinkedHashSet<>();
-                for (Food f : setFod) {
-                    if (selectedCategory.getName().equals(f.getCategoryName())) {
-                        filterFood.add(f);
+
+                if(selectedCategory != null ){
+                    for (Food f : setFod) {
+                        if (selectedCategory.getName().equals(f.getCategoryName())) {
+                            filterFood.add(f);
+                        }
                     }
+                } else {
+
+                    filterFood = setFod.stream()
+                            .filter(food ->
+                                    setCat.stream().noneMatch(i -> i.getName().equals(food.getCategoryName())))
+                                        .collect(Collectors.toCollection(LinkedHashSet::new));
+
                 }
 
 
@@ -78,7 +87,7 @@ public class Startup {
                         flagExit = true;
                         break;
                     }
-
+                    lastSearch = f.getName();
                 }
 
 
