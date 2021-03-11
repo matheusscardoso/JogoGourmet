@@ -7,7 +7,9 @@ import javax.swing.*;
 public class GiveUpFrame {
 
     public static String Plate() {
-        return JOptionPane.showInputDialog(EQuestion.QUAL_PRATO_VOCE_PENSOU.getDescription());
+        return JOptionPane.showInputDialog(null,
+                EQuestion.QUAL_PRATO_VOCE_PENSOU.getDescription(),
+                EQuestion.DESISTO.getDescription(), JOptionPane.QUESTION_MESSAGE);
     }
 
 

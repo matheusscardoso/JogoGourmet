@@ -1,5 +1,7 @@
 package main.frames;
 
+import main.enuns.EQuestion;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -19,7 +21,7 @@ public class StartUpFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setOkClicked(true);
-                JOptionPane.showMessageDialog(null, "Clicado");
+                JOptionPane.showMessageDialog(null, EQuestion.CLICADO.getDescription());
 
             }
         });
@@ -40,7 +42,7 @@ public class StartUpFrame {
     public JFrame create(String appTitle) {
         JButton btn = createButtonOK();
 
-        JLabel label = new JLabel("Pense em um prato que gosta");
+        JLabel label = new JLabel(EQuestion.PENSE_EM_UM_PRATO.getDescription());
         label.setVerticalAlignment(SwingConstants.CENTER);
 
         JPanel contentPane = new JPanel();
